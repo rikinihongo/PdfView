@@ -64,58 +64,54 @@ android {
 
 dependencies {
     // ===== CORE ANDROID DEPENDENCIES =====
-    implementation("androidx.core:core-ktx:1.16.0")
-    implementation("androidx.appcompat:appcompat:1.7.1")
-    implementation("androidx.annotation:annotation:1.9.1")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.annotation)
+    implementation(libs.material)
 
     // ===== KOTLIN COROUTINES (ESSENTIAL for async operations) =====
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 
     // ===== UI & GRAPHICS =====
-    implementation("androidx.recyclerview:recyclerview:1.4.0") // For page recycling if needed
-    implementation("androidx.customview:customview:1.2.0") // For custom view support
+    implementation(libs.androidx.recyclerview) // For page recycling if needed
+    implementation(libs.androidx.customview) // For custom view support
 
     // ===== LIFECYCLE (for memory management) =====
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.2")
-    implementation("androidx.lifecycle:lifecycle-common:2.9.2")
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.common)
 
     // ===== COLLECTION UTILITIES =====
-    implementation("androidx.collection:collection-ktx:1.5.0") // For LruCache and collections
+    implementation(libs.androidx.collection.ktx) // For LruCache and collections
 
     // ===== OPTIONAL: For advanced bitmap operations =====
-    implementation("androidx.palette:palette-ktx:1.0.0") // For color extraction if needed
+    implementation(libs.androidx.palette.ktx) // For color extraction if needed
 
     // ===== NO NETWORK DEPENDENCIES =====
     // Không cần OkHttp3 vì library chỉ xử lý local files, URIs, streams
     // Network loading sẽ do consumer app handle
 
     // ===== TESTING DEPENDENCIES =====
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("org.mockito:mockito-core:5.5.0")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
-    testImplementation("androidx.test:core:1.5.0")
-    testImplementation("androidx.test.ext:junit:1.1.5")
-    testImplementation("org.robolectric:robolectric:4.10.3")
+    testImplementation(libs.junit)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.org.jetbrains.kotlinx.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.core)
+    testImplementation(libs.androidx.junit.v115)
+    testImplementation(libs.robolectric)
 
     // Android Instrumented Tests
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation("androidx.test:runner:1.5.2")
-    androidTestImplementation("androidx.test:rules:1.5.0")
-    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.androidx.rules)
+    androidTestImplementation(libs.org.jetbrains.kotlinx.kotlinx.coroutines.test)
 
     // ===== BENCHMARK DEPENDENCIES (for performance module) =====
-    androidTestImplementation("androidx.benchmark:benchmark-junit4:1.4.0")
+    androidTestImplementation(libs.androidx.benchmark.junit4)
 
     // ===== MEMORY LEAK DETECTION (debug builds only) =====
-    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.14")
+    debugImplementation(libs.leakcanary.android)
 
-//    implementation(libs.androidx.core.ktx)
-//    implementation(libs.androidx.appcompat)
-//    implementation(libs.material)
-//    testImplementation(libs.junit)
-//    androidTestImplementation(libs.androidx.junit)
-//    androidTestImplementation(libs.androidx.espresso.core)
+
 }
