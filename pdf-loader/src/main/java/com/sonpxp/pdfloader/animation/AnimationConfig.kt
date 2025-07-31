@@ -1,13 +1,12 @@
 package com.sonpxp.pdfloader.animation
 
-package com.yourpackage.pdfloader.animation
 
 import android.view.animation.Interpolator
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import android.view.animation.OvershootInterpolator
 import android.view.animation.BounceInterpolator
-import com.yourpackage.pdfloader.model.AnimationType
+import com.sonpxp.pdfloader.AnimationType
 
 /**
  * Configuration class for animations in the PDF viewer

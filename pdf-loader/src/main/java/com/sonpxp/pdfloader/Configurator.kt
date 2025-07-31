@@ -3,7 +3,6 @@ package com.sonpxp.pdfloader
 import android.content.Context
 import android.net.Uri
 import androidx.annotation.ColorInt
-import com.sonpxp.pdfloader.layout.FitPolicy
 import com.sonpxp.pdfloader.listeners.drawing.OnDrawAllListener
 import com.sonpxp.pdfloader.listeners.drawing.OnDrawListener
 import com.sonpxp.pdfloader.listeners.error.OnErrorListener
@@ -20,12 +19,13 @@ import com.sonpxp.pdfloader.listeners.page.OnPageChangeListener
 import com.sonpxp.pdfloader.listeners.page.OnPageErrorListener
 import com.sonpxp.pdfloader.listeners.page.OnPageScrollListener
 import com.sonpxp.pdfloader.model.Configuration
+import com.sonpxp.pdfloader.source.AssetSource
+import com.sonpxp.pdfloader.source.ByteArraySource
 import com.sonpxp.pdfloader.source.DocumentSource
-import com.sonpxp.pdfloader.ui.minimap.MinimapPosition
-import com.sonpxp.pdfloader.ui.pagenumber.PageNumberPosition
+import com.sonpxp.pdfloader.source.FileSource
+import com.sonpxp.pdfloader.source.StreamSource
+import com.sonpxp.pdfloader.source.UriSource
 import com.sonpxp.pdfloader.ui.scrollhandle.ScrollHandle
-import com.yourpackage.pdfloader.listeners.*
-import com.yourpackage.pdfloader.model.*
 import java.io.File
 import java.io.InputStream
 
@@ -41,7 +41,7 @@ class Configurator(private val context: Context) {
     // ===== DATA SOURCES =====
 
     fun fromUri(uri: Uri): Configurator {
-        this.documentSource = UriSource(uri)
+        this.documentSource = UriSource(context, uri)
         return this
     }
 
@@ -73,7 +73,7 @@ class Configurator(private val context: Context) {
     // ===== PAGE CONFIGURATION =====
 
     fun pages(vararg pageNumbers: Int): Configurator {
-        config = config.copy(pages = pageNumbers.toList())
+        config = config.copy(pages = pageNumbers)
         return this
     }
 
@@ -93,7 +93,7 @@ class Configurator(private val context: Context) {
     }
 
     fun spacing(spacingDp: Int): Configurator {
-        config = config.copy(spacing = spacingDp)
+        config = config.copy(spacingDp = spacingDp)
         return this
     }
 
