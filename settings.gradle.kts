@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "PdfView"
 include(":app")
-include(":app:pdfviewer")
+include(":app:pdfloader")
+include(":pdf-loader")
