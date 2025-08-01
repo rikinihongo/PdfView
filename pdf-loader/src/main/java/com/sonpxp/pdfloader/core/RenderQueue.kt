@@ -1,12 +1,11 @@
 package com.sonpxp.pdfloader.core
 
-import android.annotation.SuppressLint
 import android.graphics.HardwareBufferRenderer
-import java.util.concurrent.locks.ReentrantLock
 import android.util.Log
 import java.util.concurrent.*
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicLong
+import java.util.concurrent.locks.ReentrantLock
 
 /**
  * Manages a queue of rendering tasks with priority scheduling
@@ -16,7 +15,7 @@ class RenderQueue(
     private val corePoolSize: Int = 2,
     private val maximumPoolSize: Int = 4,
     private val keepAliveTime: Long = 60L,
-    private val queueCapacity: Int = 50
+    private val queueCapacity: Int = 50,
 ) {
 
     companion object {
@@ -97,7 +96,12 @@ class RenderQueue(
         // Check if task is already pending or completed
         if (pendingTasks.containsKey(taskId)) {
             Log.d(TAG, "Task already pending: $taskId")
-            return CompletableFuture.completedFuture(RenderResult.error(taskId, IllegalStateException("Task already pending")))
+            return CompletableFuture.completedFuture(
+                RenderResult.error(
+                    taskId,
+                    IllegalStateException("Task already pending")
+                )
+            )
         }
 
         completedTasks[taskId]?.let { cachedResult ->
@@ -346,7 +350,7 @@ class RenderQueue(
      */
     private class PriorityFutureTask(
         val renderTask: RenderTask,
-        private val completionCallback: (RenderResult) -> Unit
+        private val completionCallback: (RenderResult) -> Unit,
     ) : Callable<RenderResult> {
 
         override fun call(): RenderResult {
@@ -370,7 +374,7 @@ class RenderQueue(
         val maximumPoolSize: Int,
         val currentPoolSize: Int,
         val averageRenderTime: Long,
-        val completedTasksCacheSize: Int
+        val completedTasksCacheSize: Int,
     ) {
 
         fun getCompletionRate(): Float {
@@ -404,8 +408,16 @@ private class PausableThreadPoolExecutor(
     unit: TimeUnit,
     workQueue: BlockingQueue<Runnable>,
     threadFactory: ThreadFactory,
-    handler: RejectedExecutionHandler
-) : ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory, handler) {
+    handler: RejectedExecutionHandler,
+) : ThreadPoolExecutor(
+    corePoolSize,
+    maximumPoolSize,
+    keepAliveTime,
+    unit,
+    workQueue,
+    threadFactory,
+    handler
+) {
 
     private var isPaused = false
     private val pauseLock = ReentrantLock()

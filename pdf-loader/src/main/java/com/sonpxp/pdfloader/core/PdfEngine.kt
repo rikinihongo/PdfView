@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.RectF
 import android.util.Log
 import com.sonpxp.pdfloader.RenderQuality
+import com.sonpxp.pdfloader.exception.InvalidSourceException
 import com.sonpxp.pdfloader.exception.PageRenderException
 import com.sonpxp.pdfloader.model.Configuration
 import com.sonpxp.pdfloader.model.PageInfo
@@ -24,7 +25,7 @@ class PdfEngine(private val context: Context) {
     companion object {
         private const val TAG = "PdfEngine"
         private const val DEFAULT_CACHE_SIZE_MB = 120
-        private const val DEFAULT_BITMAP_POOL_SIZE_MB = 50
+        private const val DEFAULT_BITMAP_POOL_SIZE_MB = 50L
         private const val DEFAULT_MAX_CONCURRENT_PAGES = 3
     }
 

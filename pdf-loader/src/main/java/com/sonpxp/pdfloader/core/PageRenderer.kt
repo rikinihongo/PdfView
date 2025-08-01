@@ -309,7 +309,7 @@ class PageRenderer(
     }
 
     private fun createScaledBitmap(source: Bitmap, targetWidth: Int, targetHeight: Int): Bitmap {
-        val scaledBitmap = bitmapPool.getBitmap(targetWidth, targetHeight, source.config)
+        val scaledBitmap = bitmapPool.getBitmap(targetWidth, targetHeight, source.config!!)
         val canvas = Canvas(scaledBitmap)
 
         val srcRect = Rect(0, 0, source.width, source.height)
